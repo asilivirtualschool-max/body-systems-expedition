@@ -1,0 +1,70 @@
+UPDATING THE LIVE WORKBOOK
+==========================
+
+What changed: groups now sync through a Firebase database instead of
+browser-to-browser connections, which your school network blocks. The
+new database is already created, its rules are set, and its address is
+baked into index.html. Nothing else to configure.
+
+STEP 1 - PUSH
+-------------
+Double-click PUSH-TO-GITHUB.bat in this folder.
+A browser window opens once to sign in to GitHub. That is Git's own
+sign-in - nobody else sees it.
+
+By hand instead, in a terminal in this folder:
+
+  git add .
+  git commit -m "Sync groups through a database relay"
+  git push
+
+(The first time, if git complains there is no remote:
+  git init -b main
+  git add .
+  git commit -m "Finding Out: Body Systems Expedition"
+  git remote add origin https://github.com/asilivirtualschool-max/body-systems-expedition.git
+  git push -u origin main)
+
+STEP 2 - TURN ON THE WEBSITE (first time only)
+----------------------------------------------
+On GitHub: Settings - Pages - Source: "Deploy from a branch",
+Branch: main, folder: / (root) - Save. Give it a minute.
+
+STEP 3 - DELETE THE OLD FILE
+----------------------------
+The repository currently holds an older upload called Index.html
+(capital I). Delete it, or students who use the old link keep getting
+the version that cannot connect:
+
+  On GitHub, open Index.html - the "..." menu at the top right of the
+  file - Delete file - Commit changes.
+
+THE ADDRESS TO GIVE STUDENTS
+----------------------------
+  https://asilivirtualschool-max.github.io/body-systems-expedition/
+
+(no file name on the end)
+
+BEFORE A LESSON
+---------------
+Open that address and press "Run a systems check". It reaches the
+database, writes a test room, reads it back and tidies up after itself.
+If that passes on one laptop, groups will connect on all of them.
+
+THE DATABASE
+------------
+  Project:  finding-out-expedition (Firebase, free Spark plan)
+  Database: finding-out-expedition-default-rtdb.europe-west1.firebasedatabase.app
+  Console:  https://console.firebase.google.com/project/finding-out-expedition
+
+Rules: a room can be read and written by anyone who knows its six-letter
+code; the list of rooms cannot be browsed, so codes cannot be guessed at
+scale; rooms stop accepting writes 24 hours after they are made.
+
+In the database you will see first names, roles, shared facts, the
+co-written question, the group summary, the quiz link and the chat.
+Personal journals, personal summaries and uploaded images never leave
+the student's own browser.
+
+To clear old rooms: Firebase console - Realtime Database - Data - hover
+over "rooms" and use the X. Safe to do between units.

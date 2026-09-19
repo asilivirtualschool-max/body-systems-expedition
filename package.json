@@ -1,0 +1,14 @@
+{
+  "name": "finding-out-body-systems",
+  "version": "1.0.0",
+  "description": "A collaborative Finding Out workbook for a Grade 5 human body inquiry (IB PYP).",
+  "private": true,
+  "scripts": {
+    "build": "./build.sh",
+    "test": "node tests/run-all.js",
+    "serve": "node -e \"const h=require('http'),f=require('fs');h.createServer((q,s)=>{s.writeHead(200,{'Content-Type':'text/html'});s.end(f.readFileSync('index.html'))}).listen(8080,()=>console.log('http://localhost:8080'))\""
+  },
+  "devDependencies": {
+    "playwright": "^1.47.0"
+  }
+}
